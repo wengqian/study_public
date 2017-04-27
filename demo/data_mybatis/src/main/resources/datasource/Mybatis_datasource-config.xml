@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc/jdbc.properties"/>
+	</bean>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<property name="url" value="${datasorce_jdbc_url}"/>
+		<property name="username" value="${datasorce_jdbc_user}"/>
+		<property name="password" value="${datasorce_jdbc_password}"/>
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${datasorce_jdbc_initialSize}"/>
+		<property name="minIdle" value="${datasorce_jdbc_minIdle}"/>
+		<property name="maxActive" value="${datasorce_jdbc_maxActive}"/>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<property name="validationQuery" value="${datasorce_jdbc_validationQuery}"/>
+	</bean>
+
+	<!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+		<!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+		<!--<property name="url" value="jdbc:mysql://localhost:3306/mvc"/>-->
+		<!--<property name="username" value="root"/>-->
+		<!--<property name="password" value="root"/>-->
+	<!--</bean>-->
+
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!--第二种-->
+		<!--<property name="configLocation" value="classpath:datasource/Mybatis_configuration.xml"></property>-->
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<!--第一种-->
+	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+		<!--<property name="basePackage" value="dao.*"/>-->
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+	<!--</bean>-->
+
+	<!--第二种 公告实现-->
+	<bean id ="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg index="0" ref ="sqlSessionFactory"/>
+	</bean>
+	<bean id ="daoHelper" class="base.BaseDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- transaction-manager：引用上面定义的事务管理器-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

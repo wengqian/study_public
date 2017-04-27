@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-jdbc:4.2.4.RELEASE">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/../ignored-out/demo/web" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../tool/maven/repository/org/springframework/spring-jdbc/4.2.4.RELEASE/spring-jdbc-4.2.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../tool/maven/repository/org/springframework/spring-jdbc/4.2.4.RELEASE/spring-jdbc-4.2.4.RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../tool/maven/repository/org/springframework/spring-jdbc/4.2.4.RELEASE/spring-jdbc-4.2.4.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

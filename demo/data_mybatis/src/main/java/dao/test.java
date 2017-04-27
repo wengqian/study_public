@@ -1,0 +1,1 @@
+package dao;import model.Test;/** * Created by wengqian on 2017/4/12. */public interface test {    public Test getUser(int id);}
