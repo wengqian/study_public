@@ -29,7 +29,7 @@ public class ProjectController {
      *
      * */
     @RequestMapping(value = "/opeartion_project_data",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_project_data(JSONObject params){
+    public String opeartion_project_data(String params){
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
@@ -110,7 +110,7 @@ public class ProjectController {
      * 共享人员的设置
      * */
     @RequestMapping(value = "/opeartion_project_vist_power",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_project_vist_power(JSONObject params){
+    public String opeartion_project_vist_power(String params){
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
@@ -135,7 +135,7 @@ public class ProjectController {
             }
             //查询新的共享人员
             param.put("opeartion_type","1");
-            return opeartion_project_vist_power(param);
+            return opeartion_project_vist_power(param.toJSONString());
 
         }else if("1".equals(opeartion_type)){//查询共享人员
             String project_id = param.getString("project_id");
@@ -157,7 +157,7 @@ public class ProjectController {
      * 查询列     4
      * */
     @RequestMapping(value = "/opeartion_project_ac_board",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_project_ac_board(JSONObject params){
+    public String opeartion_project_ac_board(String params){
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
@@ -233,7 +233,7 @@ public class ProjectController {
      *
      * */
     @RequestMapping(value = "/opeartion_risk_control",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_risk_control(JSONObject params){
+    public String opeartion_risk_control(String params){
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
@@ -311,7 +311,7 @@ public class ProjectController {
      *  查询列
      * */
     @RequestMapping(value = "/opeartion_project_multiple_message_board",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_project_multiple_message_board(JSONObject params){
+    public String opeartion_project_multiple_message_board(String params){
 
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
@@ -404,7 +404,7 @@ public class ProjectController {
      * 查询列      4
      * */
     @RequestMapping(value = "/opeartion_sys_user",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_sys_user(JSONObject params){
+    public String opeartion_sys_user(String params){
 
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
@@ -475,9 +475,13 @@ public class ProjectController {
     /**
      * 处理分页
      * */
-    public JSONObject dealPage(JSONObject param){
-        String page = param.getString("page");
-        String pagesize = param.getString("pagesize");
+    public JSONObject dealPage(String param){
+        JSONObject param_obj = new JSONObject();
+        if(param!=null && !"".equals(param)){
+            param_obj = JSONObject.parseObject(param);
+        }
+        String page = param_obj.getString("page");
+        String pagesize = param_obj.getString("pagesize");
         if(page!=null && !"".equals(page)
                 && pagesize!=null && !"".equals(pagesize)){
             Integer page_int = Integer.parseInt(page);
@@ -485,8 +489,8 @@ public class ProjectController {
             int page_start = (page_int-1)*pagesieze_int;
             int page_end = pagesieze_int;
             String paging_sql = " limit "+page_end+" OFFSET "+page_start+"  ";
-            param.put("paging_sql",paging_sql);
+            param_obj.put("paging_sql",paging_sql);
         }
-        return param;
+        return param_obj;
     }
 }
