@@ -1,0 +1,6 @@
+.container{  display: flex;  flex: 1;  height: 100%;  align-items: center;  }
+.form-signin{  width: 100%;  display: flex;  justify-content: center;  }
+.login-main-content{  width: 800px;  display: flex;  justify-content: center;  flex-direction: column;  }
+.row{margin-bottom: 10px;}
+.btn-box{display: flex;justify-content: center; padding-right: 30px;}
+.btn-box button{width: 120px;}
