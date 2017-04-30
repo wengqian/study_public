@@ -1,10 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>项目列表</title>
+    <link href="../../common/css/common.css" rel="stylesheet">
+    <link href="../../common/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../style/projectRecord.css" rel="stylesheet">
 </head>
 <body>
-    ddasfdasdfsfdsdf
+    <div class="container">
+        <div class="content-header">XXX项目管控档案</div>
+        <div class="content-main">
+            <div class="content-left">
+                <div class="risk">
+                    <div class="risk-top">
+                        <span>风险点黑板</span>
+                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#riskModal" >风险点管控</button>
+                    </div>
+                    <div class="risk-content">
+                        <p>2017-07-07 14:23:34 具体内容手动阀士大夫发射点急啊说法垃圾dhl丰厚奖励啊加分很多垃圾哈时间发货记得哈记得发货发就发很拉风好卡都是啊接电话发件符合逻辑啊分手啦是否还,已发送给xxx,xxx,xxx,xxx</p>
+                        <p>2017-07-07 14:23:34 具体内容xxfasfafasdffafdafsdfasfsdfdasxxxxxx,已发送给xxx,xxx,xxx,xxx</p>
+                    </div>
+                </div>
+                <div class="tab-item">
+                    <ul class="nav nav-pills nav-justified">
+                        <li role="presentation" class="active"><a href="javascript:void(0)" type="0">销售商务</a></li>
+                        <li role="presentation"><a href="javascript:void(0)" type="1">售前支持</a></li>
+                        <li role="presentation"><a href="javascript:void(0)" type="2">项目经理</a></li>
+                        <li role="presentation"><a href="javascript:void(0)" type="3">风控中心</a></li>
+                    </ul>
+                </div>
+                <div class="message-board">
+                    <div class="message-list">
+                        <div class="message-list-item">
+                            <div class="list-item-title">
+                                <span>2017/06/05 12:23:23</span>
+                                <span>风险点管控方案</span>
+                                <span>唐某某</span>
+                            </div>
+                            <div class="list-item-content"></div>
+                        </div>
+                        <div class="message-list-item">
+                            <div class="list-item-title">
+                                <span>2017/06/05 12:23:23</span>
+                                <span>风险点管控方案</span>
+                                <span>唐某某</span>
+                            </div>
+                            <div class="list-item-content"></div>
+                        </div>
+                        <div class="message-list-item">
+                            <div class="list-item-title">
+                                <span>2017/06/05 12:23:23</span>
+                                <span>风险点管控方案</span>
+                                <span>唐某某</span>
+                            </div>
+                            <div class="list-item-content"></div>
+                        </div>
+                    </div>
+                    <div class="message-type">
+                        <div class="default-type">
+                            <button class="btn btn-default" type="button">核心目的</button>
+                            <button class="btn btn-default" type="button">人物逻辑</button>
+                            <button class="btn btn-default" type="button">会议纪要</button>
+                        </div>
+                        <div class="special-type" id="special-type"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="project-member">
+                    <div class="box-title">项目人员</div>
+                    <div class="box-content"></div>
+                </div>
+                <div class="project-communicate">
+                    <div class="box-title">项目交流板</div>
+                    <div class="box-content">
+                        <div class="box-content-item">
+                            <p>童xx 2017-02-06 15:13:12</p>
+                            <p>如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>
+                        </div>
+                        <div class="box-content-item">
+                            <p>童xx 2017-02-06 15:13:12</p>
+                            <p>如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--风险点管控 Modal -->
+    <div class="modal fade" id="riskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">告知风险点</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="send-content">
+                        <textarea rows="6"></textarea>
+                    </div>
+                    <div class="send-person">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">添加人员</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../common/js/jquery-2.1.4.min.js"></script>
+    <script src="../../common/bootstrap/js/bootstrap.min.js"></script>
+    <!--加载接口配置以及ajajx访问-->
+    <script src="../../common/js/interface.js"></script>
+    <!--加载接口配置以及ajajx访问-->
+    <script src="../../common/js/ajax_visit.js"></script>
+    <script src="js/projectRecord.js"></script>
 </body>
 </html>
