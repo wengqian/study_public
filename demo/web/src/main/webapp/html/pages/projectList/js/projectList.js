@@ -23,6 +23,7 @@ function getProjectList() {
 //获取项目列表
 function getProjectList_success(data){
     // console.log(data);
+    var long  = data.long;
     var $list=$("#projectList").empty();
     $list.append('<div class="item-box" id ="project_add">' +
                 '   <div class="item-box-border"> ' +
