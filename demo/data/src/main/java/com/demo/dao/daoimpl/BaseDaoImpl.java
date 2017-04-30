@@ -93,8 +93,8 @@ public class BaseDaoImpl implements BaseDao{
         for(int i=0;i<valueObj.size();i++){
             sql =sql+"?,";
         }
-        sql = sql.substring(0,sql.length()-3);
-
+        sql = sql.substring(0,sql.length()-1);
+        sql+=")";
         DataSourceUtil.getJdbcTemplate(jdbcTemplateName).update(sql,obj);
     }
 
@@ -115,7 +115,7 @@ public class BaseDaoImpl implements BaseDao{
             return;
         }
 
-        String sql ="update "+tableName+"set ";
+        String sql ="update "+tableName+" set ";
         Object[] obj = new Object[valueObj.size()+keyObj.size()];
         int j =0;
         for(String key:valueObj.keySet()){

@@ -36,32 +36,47 @@ public class ProjectController {
         String opeartion_usercode = param.getString("opeartion_usercode");
 
         if("0".equals(opeartion_type)){//新增
-            obj.put("project_id", UUID.randomUUID());
+            obj.put("project_id", getUUUID());
             obj.put("project_name",param.getString("project_name"));
             obj.put("create_usercode",opeartion_usercode);
             obj.put("create_time",new Date());
             obj.put("is_delete","0");
             baseDao.add(obj,"project_data");
-            return new Result(1,"新增成功",obj).toString();
+            JSONObject result = new JSONObject();
+            result.put("project_obj",obj);
+            return new Result(1,"新增成功",result).toString();
         }else if("1".equals(opeartion_type)){//修改
+            if(param.getString("project_id")==null || "".equals(param.getString("project_id"))){
+                return new Result(0,"project_id不能为空").toString();
+            }
             obj.put("update_usercode",opeartion_usercode);
             obj.put("update_time",new Date());
-
+            if(param.getString("project_name")!=null){
+                obj.put("project_name",param.getString("project_name")) ;
+            }
+            if(param.getString("is_delete")!=null){
+                obj.put("is_delete",param.getString("is_delete")) ;
+            }
             JSONObject keyObj = new JSONObject();
-            keyObj.put("id",param.getString("project_id"));
+            keyObj.put("project_id",param.getString("project_id"));
 
             baseDao.update(obj,"project_data",keyObj);
-            return new Result(1,"修改成功",obj).toString();
+            return new Result(1,"修改成功",null).toString();
         }else if ("2".equals(opeartion_type)){//删除
+            if(param.getString("project_id")==null || "".equals(param.getString("project_id"))){
+                return new Result(0,"project_id不能为空").toString();
+            }
             obj.put("delete_usercode",opeartion_usercode);
             obj.put("delete_time",new Date());
             obj.put("is_delete","1");
-
+            if(param.getString("project_name")!=null){
+                obj.put("project_name",param.getString("project_name")) ;
+            }
             JSONObject keyObj = new JSONObject();
-            keyObj.put("id",param.getString("project_id"));
+            keyObj.put("project_id",param.getString("project_id"));
 
             baseDao.update(obj,"project_data",keyObj);
-            return new Result(1,"删除成功",obj).toString();
+            return new Result(1,"删除成功",null).toString();
         }else if ("3".equals(opeartion_type)){//获取单个对象
             String project_id = param.getString("project_id");
             String sql ="select a.*,b.username as create_username from project_data a ,sys_user b where a.project_id ='"+project_id+"' " +
@@ -76,16 +91,16 @@ public class ProjectController {
             String public_sql =" from project_data a left Join sys_user b on b.usercode = a.create_usercode " +
                     " where a.is_delete ='0'  and (a.create_usercode ='"+opeartion_usercode+"' " +
                     " or EXISTS(select 1 from project_vist_power c where a.project_id = c.project_id and c.usercode ='"+opeartion_usercode+"') ) ";
-            if(!"".equals(param.getString("project_name"))){
+            if(param.getString("project_name")!=null && !"".equals(param.getString("project_name"))){
                 public_sql +=" and a.project_name like '%"+param.getString("project_name")+"%' ";
             }
-            if(!"".equals(param.getString("create_usercode"))){
+            if(param.getString("create_usercode")!=null && !"".equals(param.getString("create_usercode"))){
                 public_sql +=" and a.create_usercode = '"+param.getString("create_usercode")+"' ";
             }
 
             list_sql +=public_sql+" order by create_time desc ";
             count_sql+=public_sql;
-            if(!"".equals(param.getString("paging_sql"))){
+            if(param.getString("paging_sql")!=null && !"".equals(param.getString("paging_sql"))){
                 list_sql+=param.getString("paging_sql");
             }
             long count = baseDao.count(count_sql);
@@ -164,7 +179,7 @@ public class ProjectController {
         String opeartion_usercode = param.getString("opeartion_usercode");
 
         if("0".equals(opeartion_type)){//新增
-            obj.put("id",UUID.randomUUID());
+            obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
             obj.put("send_content",param.getString("send_content"));
             obj.put("send_time",new Date());
@@ -196,16 +211,16 @@ public class ProjectController {
             String count_sql ="select count(*)  ";
             String public_sql =" from project_ac_board a left Join sys_user b on b.usercode = a.send_usercode " +
                     " where a.is_delete ='0'  and a.project_id='"+project_id+"' " ;
-            if(!"".equals(param.getString("send_content"))){
+            if(param.getString("send_content")!=null &&!"".equals(param.getString("send_content"))){
                 public_sql +=" and a.send_content like '%"+param.getString("send_content")+"%' ";
             }
-            if(!"".equals(param.getString("send_usercode"))){
+            if(param.getString("send_usercode")!=null && !"".equals(param.getString("send_usercode"))){
                 public_sql +=" and a.send_usercode = '"+param.getString("send_usercode")+"' ";
             }
 
             list_sql +=public_sql+" order by send_time desc ";
             count_sql+=public_sql;
-            if(!"".equals(param.getString("paging_sql"))){
+            if(param.getString("paging_sql")!=null && !"".equals(param.getString("paging_sql"))){
                 list_sql+=param.getString("paging_sql");
             }
             long count = baseDao.count(count_sql);
@@ -239,7 +254,7 @@ public class ProjectController {
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
         if("0".equals(opeartion_type)){//发送(新增)
-            obj.put("id",UUID.randomUUID());
+            obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
             obj.put("send_content",param.getString("send_content"));
             obj.put("send_time",new Date());
@@ -272,16 +287,16 @@ public class ProjectController {
             String count_sql ="select count(*)  ";
             String public_sql =" from risk_control a left Join sys_user b on b.usercode = a.send_usercode " +
                     " where a.is_delete ='0'  and a.project_id='"+project_id+"' " ;
-            if(!"".equals(param.getString("send_content"))){
+            if(param.getString("send_content")!=null && !"".equals(param.getString("send_content"))){
                 public_sql +=" and a.send_content like '%"+param.getString("send_content")+"%' ";
             }
-            if(!"".equals(param.getString("send_usercode"))){//发送人员
+            if(param.getString("send_usercode")!=null && !"".equals(param.getString("send_usercode"))){//发送人员
                 public_sql +=" and a.send_usercode = '"+param.getString("send_usercode")+"' ";
             }
 
             list_sql +=public_sql+" order by send_time desc ";
             count_sql+=public_sql;
-            if(!"".equals(param.getString("paging_sql"))){
+            if(param.getString("paging_sql")!=null &&!"".equals(param.getString("paging_sql"))){
                 list_sql+=param.getString("paging_sql");
             }
             long count = baseDao.count(count_sql);
@@ -318,7 +333,7 @@ public class ProjectController {
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
         if("0".equals(opeartion_type)){//新增
-            obj.put("id",UUID.randomUUID());
+            obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
             obj.put("send_content",param.getString("send_content"));
             obj.put("send_time",new Date());
@@ -358,22 +373,22 @@ public class ProjectController {
             String public_sql =" from project_multiple_message_board a left Join sys_user b on b.usercode = a.send_usercode " +
                     " where a.is_delete ='0'  and a.project_id='"+project_id+"' " ;
 
-            if(!"".equals(param.getString("type"))){//类型
+            if(param.getString("type")!=null &&!"".equals(param.getString("type"))){//类型
                 public_sql +=" and a.type = '"+param.getString("type")+"' ";
             }
-            if(!"".equals(param.getString("type1"))){//类型1
+            if(param.getString("type1")!=null &&!"".equals(param.getString("type1"))){//类型1
                 public_sql +=" and a.type1 = '"+param.getString("type1")+"' ";
             }
-            if(!"".equals(param.getString("send_content"))){
+            if(param.getString("send_content")!=null &&!"".equals(param.getString("send_content"))){
                 public_sql +=" and a.send_content like '%"+param.getString("send_content")+"%' ";
             }
-            if(!"".equals(param.getString("send_usercode"))){//发送人员
+            if(param.getString("send_usercode")!=null &&!"".equals(param.getString("send_usercode"))){//发送人员
                 public_sql +=" and a.send_usercode = '"+param.getString("send_usercode")+"' ";
             }
 
             list_sql +=public_sql+" order by send_time desc ";
             count_sql+=public_sql;
-            if(!"".equals(param.getString("paging_sql"))){
+            if(param.getString("paging_sql")!=null && !"".equals(param.getString("paging_sql"))){
                 list_sql+=param.getString("paging_sql");
             }
             long count = baseDao.count(count_sql);
@@ -435,22 +450,26 @@ public class ProjectController {
             return new Result(1,"操作成功",obj).toString();
         }else if("3".equals(opeartion_type)){//查询单个
             String usercode = param.getString("usercode");
-            String sql ="select a.* from sys_user where a.is_delete='0' and a.usercode ='"+usercode+"' " ;
+            String sql ="select a.* from sys_user a where a.is_delete='0' and a.usercode ='"+usercode+"' " ;
             obj = baseDao.selectOne(sql);
+            if(obj==null){
+                return new Result(0,"不存在该账户或已删除").toString();
+            }
             JSONObject result = new JSONObject();
             result.put("obj",obj);
+            return new Result(1,"查询单个成功",result).toString();
         }else if("4".equals(opeartion_type)){//查询列
             String list_sql ="select a.* ";
             String count_sql ="select count(*)  ";
             String public_sql =" from sys_user a where a.is_delete ='0'  " ;
 
-            if(!"".equals(param.getString("username"))){
+            if(param.getString("username")!=null && !"".equals(param.getString("username"))){
                 public_sql +=" and a.username like '%"+param.getString("username")+"%' ";
             }
 
             list_sql +=public_sql+" order by create_time desc ";
             count_sql+=public_sql;
-            if(!"".equals(param.getString("paging_sql"))){
+            if(param.getString("paging_sql")!=null &&!"".equals(param.getString("paging_sql"))){
                 list_sql+=param.getString("paging_sql");
             }
             long count = baseDao.count(count_sql);
@@ -467,11 +486,24 @@ public class ProjectController {
 
             return new Result(1,"查询列成功",result).toString();
 
+        }else if("5".equals(opeartion_type)){//login
+            String usercode = param.getString("usercode");
+            String password = param.getString("password");
+            String sql ="select a.* from sys_user a where a.is_delete='0' and a.usercode ='"+usercode+"' and a.password ='"+password+"'" ;
+            obj = baseDao.selectOne(sql);
+            if(obj==null){
+                return new Result(0,"账户或者密码输入错误").toString();
+            }
+            JSONObject result = new JSONObject();
+            result.put("user_obj",obj);
+            return new Result(1,"查询单个成功",result).toString();
         }
 
         return new Result(0,"无该项操作",null).toString();
     }
-
+    public String getUUUID(){
+       return UUID.randomUUID()+"";
+    }
     /**
      * 处理分页
      * */
