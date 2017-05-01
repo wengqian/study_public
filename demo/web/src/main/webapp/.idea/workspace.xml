@@ -18,8 +18,8 @@
       <file leaf-file-name="projectRecord.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/pages/projectRecord/projectRecord.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="77" column="43" lean-forward="false" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="43" />
+            <state relative-caret-position="438">
+              <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding>
                 <element signature="e#6830#6837#1" expanded="true" />
                 <element signature="e#9490#9497#1" expanded="true" />
@@ -64,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projectList.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="projectList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/pages/projectList/projectList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+            <state relative-caret-position="-116">
+              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
               <folding>
                 <element signature="e#1210#1217#1" expanded="true" />
               </folding>
@@ -88,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projectRecord.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="projectRecord.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/pages/style/projectRecord.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="28" column="104" lean-forward="false" selection-start-line="28" selection-start-column="104" selection-end-line="28" selection-end-column="104" />
+            <state relative-caret-position="424">
+              <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -128,9 +128,9 @@
         <option value="$PROJECT_DIR$/html/pages/projectList/js/projectList.js" />
         <option value="$PROJECT_DIR$/html/login.js" />
         <option value="$PROJECT_DIR$/html/pages/projectRecord/js/projectRecord.js" />
+        <option value="$PROJECT_DIR$/html/pages/projectList/projectList.html" />
         <option value="$PROJECT_DIR$/html/pages/projectRecord/projectRecord.html" />
         <option value="$PROJECT_DIR$/html/pages/style/projectRecord.css" />
-        <option value="$PROJECT_DIR$/html/pages/projectList/projectList.html" />
       </list>
     </option>
   </component>
@@ -431,12 +431,12 @@
       <workItem from="1493528051965" duration="11735000" />
       <workItem from="1493582597466" duration="3235000" />
       <workItem from="1493620480927" duration="2010000" />
-      <workItem from="1493622842520" duration="7754000" />
+      <workItem from="1493622842520" duration="8250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32595000" />
+    <option name="totallyTimeSpent" value="33091000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -867,29 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/pages/style/projectRecord.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="28" column="104" lean-forward="false" selection-start-line="28" selection-start-column="104" selection-end-line="28" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/pages/projectRecord/projectRecord.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="77" column="43" lean-forward="false" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="43" />
-          <folding>
-            <element signature="e#6830#6837#1" expanded="true" />
-            <element signature="e#9490#9497#1" expanded="true" />
-            <element signature="e#10514#10521#1" expanded="true" />
-            <element signature="e#11991#11998#1" expanded="true" />
-            <element signature="e#12509#12516#1" expanded="true" />
-            <element signature="e#13363#13370#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/pages/projectList/js/projectList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270">
@@ -902,11 +879,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/pages/projectList/projectList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+        <state relative-caret-position="-116">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
           <folding>
             <element signature="e#1210#1217#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/pages/projectRecord/projectRecord.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
+          <folding>
+            <element signature="e#6830#6837#1" expanded="true" />
+            <element signature="e#9490#9497#1" expanded="true" />
+            <element signature="e#10514#10521#1" expanded="true" />
+            <element signature="e#11991#11998#1" expanded="true" />
+            <element signature="e#12509#12516#1" expanded="true" />
+            <element signature="e#13363#13370#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/pages/style/projectRecord.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
