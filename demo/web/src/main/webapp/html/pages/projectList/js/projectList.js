@@ -5,13 +5,13 @@
 $(function(){
     // console.log(window.sessionStorage.getItem("user_info"));
     init();
-    // getProjectList();
+    getProjectList();
 })
 
 function init(){
     // getSession("user_info")["usecode"];
     // console.log(getSession("user_info"));
-    $("#projectList").on('click','#addProjectBtn',function(){
+    $("#projectList").on('click','#project_add',function(){
         $("#addProjectModal").modal();
     })
 }
@@ -38,14 +38,14 @@ function getProjectList_success(data){
         $list.append(html);
     };
     //新增
-    $("#project_add").unbind('click').click(function(){
-        project_add();
-        //test
-        // project_modify();
-        // setTimeout(function(){
-        //     project_delete();
-        // },3000)
-    });
+    // $("#project_add").unbind('click').click(function(){
+    //     project_add();
+    //     //test
+    //     // project_modify();
+    //     // setTimeout(function(){
+    //     //     project_delete();
+    //     // },3000)
+    // });
 }
 /***
  * 新增
