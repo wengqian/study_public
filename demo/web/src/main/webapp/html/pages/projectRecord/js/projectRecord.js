@@ -61,6 +61,11 @@ function init(){
             $(this).addClass('info');
         }
     })
+
+    //添加项目成员
+    $("#addProjectMember").unbind('click').click(function(){
+        $("#userListModal").modal();
+    })
 }
 
 //获取特殊类型按钮
