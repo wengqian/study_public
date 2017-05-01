@@ -19,7 +19,7 @@
                         <span>风险点黑板</span>
                         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#riskModal" >风险点管控</button>
                     </div>
-                    <div class="risk-content">
+                    <div class="risk-content" id="risk-content">
                         <p>2017-07-07 14:23:34 具体内容手动阀士大夫发射点急啊说法垃圾dhl丰厚奖励啊加分很多垃圾哈时间发货记得哈记得发货发就发很拉风好卡都是啊接电话发件符合逻辑啊分手啦是否还,已发送给xxx,xxx,xxx,xxx</p>
                         <p>2017-07-07 14:23:34 具体内容xxfasfafasdffafdafsdfasfsdfdasxxxxxx,已发送给xxx,xxx,xxx,xxx</p>
                     </div>
@@ -33,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="message-board">
-                    <div class="message-list">
+                    <div class="message-list" id="multiple_message_board">
                         <div class="message-list-item">
                             <div class="list-item-title">
                                 <span>2017/06/05 12:23:23</span>
@@ -71,15 +71,15 @@
             </div>
             <div class="content-right">
                 <div class="project-member">
-                    <div class="box-title"><span>项目人员</span></div>
-                    <div class="box-content"></div>
+                    <div class="box-title">项目人员</div>
+                    <div class="box-content" id="share_user"></div>
                 </div>
                 <div class="project-communicate">
                     <div class="box-title">
                         <span>项目交流板</span>
                         <a href="#" data-toggle="modal" data-target="#communicateModal">留言</a>
                     </div>
-                    <div class="box-content">
+                    <div class="box-content" id="project_board">
                         <div class="box-content-item">
                             <p>童xx 2017-02-06 15:13:12</p>
                             <p>如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="send-content">
-                        <textarea rows="6" placeholder="请输入内容。。。"></textarea>
+                        <textarea rows="6" id="risk_control_content" placeholder="请输入内容。。。"></textarea>
                     </div>
                     <div class="send-person">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userListModal">添加人员</button>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">发送</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="risk_control_add()">发送</button>
                 </div>
             </div>
         </div>
@@ -231,6 +231,7 @@
     <script src="../../common/js/interface.js"></script>
     <!--加载接口配置以及ajajx访问-->
     <script src="../../common/js/ajax_visit.js"></script>
+    <script src="js/projectRecord_load.js"></script>
     <script src="js/projectRecord.js"></script>
 </body>
 </html>

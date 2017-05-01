@@ -7,6 +7,8 @@ $(function(){
     init();
 })
 function init(){
+    setSession("user_info",null);
+    setSession("opeartion_project_id","");
     $("#login").unbind('click').click(function(){
         login();
     });
@@ -15,17 +17,31 @@ function init(){
  *登录访问账户
  */
 function login(){
+    var usercode =$("#userName_test").val();
+    var password =$("#userPwd_test").val();
+    if(usercode=='' || usercode==undefined){
+        alert('请输入用户名！');
+        return;
+    }
+    if(password=='' || password==undefined){
+        alert('请输入密码！');
+        return;
+    }
     var data ={
-        usercode:'1',
-        password:'1',
+        usercode:usercode,
+        password:password,
         opeartion_type:'5'
     }
-    sendPost(ProjectController.opeartion_sys_user,data,login_success)
+     sendPost(ProjectController.opeartion_sys_user,data,login_success)
 }
 /**
  * 登录成功之后操作
  * */
 function login_success(data){
+    if(data["user_obj"]=='' ||data["user_obj"]==undefined){
+        alert('无此用户！');
+        return ;
+    }
     // console.log(data)
     setSession("user_info",data["user_obj"]);
     // console.log(getSession("user_info"));
