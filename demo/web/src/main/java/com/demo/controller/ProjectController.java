@@ -34,6 +34,7 @@ public class ProjectController {
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
+        JSONObject result = new JSONObject();
 
         if("0".equals(opeartion_type)){//新增
             obj.put("project_id", getUUUID());
@@ -42,7 +43,6 @@ public class ProjectController {
             obj.put("create_time",new Date());
             obj.put("is_delete","0");
             baseDao.add(obj,"project_data");
-            JSONObject result = new JSONObject();
             result.put("project_obj",obj);
             return new Result(1,"新增成功",result).toString();
         }else if("1".equals(opeartion_type)){//修改
@@ -82,7 +82,6 @@ public class ProjectController {
             String sql ="select a.*,b.username as create_username from project_data a ,sys_user b where a.project_id ='"+project_id+"' " +
                     "and a.is_delete ='0' and a.create_usercode = b.usercode ";
             obj = baseDao.selectOne(sql);
-            JSONObject result = new JSONObject();
             result.put("obj",obj);
             return new Result(1,"删除成功",result).toString();
         }else if ("4".equals(opeartion_type)){//获取数组
@@ -111,7 +110,6 @@ public class ProjectController {
                 list = baseDao.select(list_sql);
             }
 
-            JSONObject result = new JSONObject();
             result.put("count",count);
             result.put("list",list);
 
@@ -129,6 +127,7 @@ public class ProjectController {
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
+        JSONObject result = new JSONObject();
 
         if("0".equals(opeartion_type)){//新增,修改,删除贡献人员
             if(param.getString("usercode_arr")==null || "".equals(param.getString("usercode_arr"))){
@@ -154,9 +153,10 @@ public class ProjectController {
 
         }else if("1".equals(opeartion_type)){//查询共享人员
             String project_id = param.getString("project_id");
-            String sql ="select b.*,a.username from sys_user a,project_vist_power b where a.userocde =b.usercode and project_id ='"+project_id+"' ";
+            String sql ="select a.*,b.username from project_vist_power a  " +
+                    "left join sys_user b on a.usercode =b.usercode " +
+                    "where a.project_id ='"+project_id+"' ";
             List<JSONObject> share_user_list = baseDao.select(sql);
-            JSONObject result = new JSONObject();
             result.put("list",share_user_list);
             return new Result(1,"操作成功",result).toString();
 
@@ -177,7 +177,10 @@ public class ProjectController {
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
-
+        JSONObject result = new JSONObject();
+        if(param.getString("project_id")==null || "".equals(param.getString("project_id"))){
+            return new Result(0,"project_id不能为空").toString();
+        }
         if("0".equals(opeartion_type)){//新增
             obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
@@ -186,13 +189,16 @@ public class ProjectController {
             obj.put("send_usercode",opeartion_usercode);
             obj.put("is_delete","0");
             baseDao.add(obj,"project_ac_board");
-            return new Result(1,"操作成功",obj).toString();
+            result.put("obj",obj);
+            return new Result(1,"操作成功",result).toString();
         }else if("1".equals(opeartion_type)){//修改
             obj.put("send_content",param.getString("send_content"));
+            obj.put("update_usercode",opeartion_usercode);
+            obj.put("update_time",new Date());
             JSONObject keyObj = new JSONObject();
             keyObj.put("id",param.getString("id"));
             baseDao.update(obj,"project_ac_board",keyObj);
-            return new Result(1,"操作成功",obj).toString();
+            return new Result(1,"操作成功",null).toString();
         }else if("2".equals(opeartion_type)){//删除
             obj.put("is_delete","1");
             obj.put("delete_time",new Date());
@@ -200,7 +206,7 @@ public class ProjectController {
             JSONObject keyObj = new JSONObject();
             keyObj.put("id",param.getString("id"));
             baseDao.update(obj,"project_ac_board",keyObj);
-            return new Result(1,"操作成功",obj).toString();
+            return new Result(1,"操作成功",null).toString();
         }else if("3".equals(opeartion_type)){//查询单个
 
 
@@ -231,7 +237,6 @@ public class ProjectController {
                 list = baseDao.select(list_sql);
             }
 
-            JSONObject result = new JSONObject();
             result.put("count",count);
             result.put("list",list);
 
@@ -253,6 +258,10 @@ public class ProjectController {
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
+        JSONObject result = new JSONObject();
+        if(param.getString("project_id")==null || "".equals(param.getString("project_id"))){
+            return new Result(0,"project_id不能为空").toString();
+        }
         if("0".equals(opeartion_type)){//发送(新增)
             obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
@@ -307,7 +316,6 @@ public class ProjectController {
                 list = baseDao.select(list_sql);
             }
 
-            JSONObject result = new JSONObject();
             result.put("count",count);
             result.put("list",list);
 
@@ -332,6 +340,10 @@ public class ProjectController {
         JSONObject obj = new JSONObject();
         String opeartion_type = param.getString("opeartion_type");
         String opeartion_usercode = param.getString("opeartion_usercode");
+        JSONObject result = new JSONObject();
+        if(param.getString("project_id")==null || "".equals(param.getString("project_id"))){
+            return new Result(0,"project_id不能为空").toString();
+        }
         if("0".equals(opeartion_type)){//新增
             obj.put("id",getUUUID());
             obj.put("project_id",param.getString("project_id"));
@@ -339,31 +351,37 @@ public class ProjectController {
             obj.put("send_time",new Date());
             obj.put("send_usercode",opeartion_usercode);
             obj.put("type",param.getString("type"));//类型
-            obj.put("type1",param.getString("type_name"));//类型名称
-            obj.put("type",param.getString("type1"));//类型1
-            obj.put("type1",param.getString("type1_name"));//类型1
+            obj.put("type_name",param.getString("type_name"));//类型名称
+            obj.put("type1",param.getString("type1"));//类型1
+            obj.put("type1_name",param.getString("type1_name"));//类型1
             obj.put("is_delete","0");
             baseDao.add(obj,"project_multiple_message_board");
             return new Result(1,"操作成功",obj).toString();
         }else if("1".equals(opeartion_type)){//修改
             obj.put("send_content",param.getString("send_content"));
+            obj.put("update_time",new Date());
+            obj.put("uddate_usercode",opeartion_usercode);
+
             JSONObject keyObj = new JSONObject();
             keyObj.put("id",param.getString("id"));
+
             baseDao.update(obj,"project_multiple_message_board",keyObj);
+            return new Result(1,"操作成功",null).toString();
         }else if("2".equals(opeartion_type)){//删除
             obj.put("is_delete","1");
             obj.put("delete_time",new Date());
             obj.put("delete_usercode",opeartion_usercode);
+
             JSONObject keyObj = new JSONObject();
             keyObj.put("id",param.getString("id"));
+
             baseDao.update(obj,"project_multiple_message_board",keyObj);
-            return new Result(1,"操作成功",obj).toString();
+            return new Result(1,"操作成功",null).toString();
         }else if("3".equals(opeartion_type)){//查询单个
             String id = param.getString("id");
             String sql ="select a.*,b.username as send_username  from project_multiple_message_board a " +
                     "left Join sys_user b on b.usercode = a.send_usercode  where a.is_delete ='0' and a.id ='"+id+"'";
             obj = baseDao.selectOne(sql);
-            JSONObject result = new JSONObject();
             result.put("obj",obj);
         }else if("4".equals(opeartion_type)){//查询列
             String project_id = param.getString("project_id");
@@ -399,7 +417,6 @@ public class ProjectController {
                 list = baseDao.select(list_sql);
             }
 
-            JSONObject result = new JSONObject();
             result.put("count",count);
             result.put("list",list);
 
@@ -491,7 +508,7 @@ public class ProjectController {
             String password = param.getString("password");
             String sql ="select a.* from sys_user a where a.is_delete='0' and a.usercode ='"+usercode+"' and a.password ='"+password+"'" ;
             obj = baseDao.selectOne(sql);
-            if(obj==null){
+            if(obj==null || obj.size()==0){
                 return new Result(0,"账户或者密码输入错误").toString();
             }
             JSONObject result = new JSONObject();

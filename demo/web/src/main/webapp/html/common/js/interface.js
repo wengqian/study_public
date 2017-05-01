@@ -20,3 +20,8 @@ function setSession(str,obj) {
 function getSession(str) {
   return JSON.parse(window.sessionStorage.getItem(str));
 }
+
+function getSessionStr(str) {
+    var str = window.sessionStorage.getItem(str);
+    return str.substr(1,str.length-2);
+}

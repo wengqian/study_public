@@ -97,13 +97,14 @@ function project_delete_success(data){
 }
 //创建项目列表HTML
 function createProjectListHTML(obj){
+    var project_id = obj["project_id"];
     var html="";
     html+='<div class="item-box">';
     html+='    <div class="item-box-border">';
     html+='        <p><span class="item-label">项目名称：</span><span class="item-data">'+obj["project_name"]+'</span></p>';
     html+='        <p><span class="item-label">创建时间：</span><span class="item-data">'+longToDate_str(obj["create_time"])+'</span></p>';
     html+='        <p><span class="item-label">更新时间：</span><span class="item-data">'+longToDate_str(obj["update_time"])+'</span></p>';
-    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(obj["project_id"])">进入</button></p>';
+    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(\''+project_id+'\');" >进入</button></p>';
     html+='    </div>';
     html+='</div>';
     return html;
@@ -127,9 +128,11 @@ function longToDate_str(date_long) {
     // date.toLocaleDateString(); //获取当前日期
     return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     // return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours();
-
 }
+
 function onEnterProjectRecordHandle(project_id){
+    // project_id = project_id.substr(1,project_id.length-1);
+    // project_id = project_id.trim();
     setSession("opeartion_project_id",project_id);//当前操作的项目id
     $("#mainIframe",parent.document).attr("src",'pages/projectRecord/projectRecord.html')
 }
