@@ -7,8 +7,8 @@ function risk_control_add(){
     var data ={
         project_id:getSessionStr("opeartion_project_id"),
         opeartion_usercode:getSession("user_info")["usercode"],
-        send_content:'短信的内容',
-        receive_user_json:[{usercode:'1',username:'1'},{usercode:'1',username:'1'}],//被接受的人员信息
+        send_content:$("#risk_control_content").val(),
+        receive_user_json:"1,wq",//被接受的人员信息
         opeartion_type:'0'
     };
 
@@ -41,7 +41,7 @@ function risk_control_search_list_success(data){
     $("#risk-content").html(html);
 }
 function createHtml_risk_control(obj){
-    var str = ""+longToDate_str(obj["send_time"])+" "+obj["send_content"]+",已发送给xxx,xxx,xxx,xxx";
+    var str = ""+longToDate_str(obj["send_time"])+" "+obj["send_content"]+",已发送给"+obj["receive_user_json"]+"";
     var html ='<p>'+str+'</p>';
     return html;
 }
