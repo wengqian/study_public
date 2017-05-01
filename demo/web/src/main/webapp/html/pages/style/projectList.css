@@ -8,3 +8,17 @@ body{ display: flex;flex: 1;}
 .index-main-content .item-box p span{font-size: 14px;}
 .index-main-content .item-box p span.item-label{font-weight: bold;}
 .index-main-content .item-box p span.item-data{color:#777;}
+
+/*添加人员弹窗*/
+.table{margin: 0;}
+.table thead{color: #fff;background: #444;}
+.table tbody tr{cursor: pointer;}
+.page{text-align: right;}
+
+/*添加项目弹窗*/
+.project-name-div input{ display: inline-block;width: 33%;}
+.add-person{margin: 10px 0px;}
+.selected-user-list{border: 1px solid #d6d6d6;margin: 5px 0px;padding: 10px;height: 150px;overflow-y: auto;}
+.selected-user-list .btn{margin-right: 8px;margin-bottom: 10px;}
+.selected-user-list .badge{top: -14px;right: -20px;width: 20px;background: #fb95f3;}
+.selected-user-list .badge .glyphicon-remove{color: #fff;left:-3px; }

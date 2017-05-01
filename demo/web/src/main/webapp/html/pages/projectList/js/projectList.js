@@ -5,12 +5,15 @@
 $(function(){
     // console.log(window.sessionStorage.getItem("user_info"));
     init();
-    getProjectList();
+    // getProjectList();
 })
 
 function init(){
     // getSession("user_info")["usecode"];
     // console.log(getSession("user_info"));
+    $("#projectList").on('click','#addProjectBtn',function(){
+        $("#addProjectModal").modal();
+    })
 }
 
 function getProjectList() {
@@ -22,7 +25,6 @@ function getProjectList() {
 }
 //获取项目列表
 function getProjectList_success(data){
-    // console.log(data);
     var $list=$("#projectList").empty();
     $list.append('<div class="item-box" id ="project_add">' +
                 '   <div class="item-box-border"> ' +

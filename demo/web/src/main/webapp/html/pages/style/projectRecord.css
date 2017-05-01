@@ -24,7 +24,8 @@
 
 /* 右侧*/
 .content-right{flex:3;display: flex;flex-direction: column;padding-left: 15px;border-left: 2px solid #d6d6d6;}
-.box-title{font-size: 1.1vw;font-weight: bold;}
+.box-title{font-size: 1.1vw;font-weight: bold;position: relative;}
+.box-title a{position: absolute;right: 0;}
 .box-content{ border: 1px solid #000; flex: 1;margin: 5px 0px;background: #fff;overflow-y: auto;padding: 5px;}
 .content-right .project-member{flex:1;display: flex;flex-direction: column;}
 .content-right .project-communicate{flex:3;display: flex;flex-direction: column;}
@@ -33,4 +34,19 @@
 .content-right .project-communicate .box-content-item p:last-child{padding-left: 18px;}
 
 /* 告知风险点弹窗*/
-#riskModal textarea{ width: 100%;border: 1px solid #d6d6d6;padding: 5px;}
+.modal textarea{ width: 100%;border: 1px solid #d6d6d6;padding: 5px;resize: none;}
+.selected-user-list{border: 1px solid #d6d6d6;margin: 5px 0px;padding: 10px;height: 100px;overflow-y: auto;}
+.selected-user-list .btn{margin-right: 8px;margin-bottom: 10px;}
+.selected-user-list .badge{top: -14px;right: -20px;width: 20px;background: #fb95f3;}
+.selected-user-list .badge .glyphicon-remove{color: #fff;left:-3px; }
+
+/*添加人员弹窗*/
+.table{margin: 0;}
+.table thead{color: #fff;background: #444;}
+.table tbody tr{cursor: pointer;}
+.page{text-align: right;}
+
+/*添加类型内容*/
+.add-type{display: flex;height:40px;align-items: center;}
+.add-type .content-label{ font-weight: bold;}
+.add-type .content-data{color: #777;}

@@ -37,6 +37,15 @@ function init(){
         var type=$(this).attr('type');
         getSpecialTypeBtns(type);
     })
+
+    //添加人员弹窗点击tr
+    $("#userList").on('click','tr',function(){
+        if($(this).hasClass('info')){
+            $(this).removeClass('info');
+        }else{
+            $(this).addClass('info');
+        }
+    })
 }
 
 //获取特殊类型按钮
@@ -44,7 +53,14 @@ function getSpecialTypeBtns(type){
     var btns=special_btn[type];
     var $btn_list=$("#special-type").empty();
     for(var i=0;i<btns.btn.length;i++){
-        var html='<button class="btn" style="background:'+btns.bg+'" type="button">'+btns.btn[i]+'</button>'
+        var html='<button class="btn" style="background:'+btns.bg+'" type="button" onclick="onAddTypeContentHandle(1,\''+btns.btn[i]+'\')">'+btns.btn[i]+'</button>'
         $btn_list.append(html);
     }
+}
+
+//点击添加类型内容
+function onAddTypeContentHandle(key,type){
+    $('#addTypeContentModal').modal()
+    $("#type-content-label").attr("key",key);
+    $("#type-content-data").text(type);
 }
