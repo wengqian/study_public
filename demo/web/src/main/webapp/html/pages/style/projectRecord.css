@@ -15,7 +15,7 @@
 .content-left .message-board .message-list .list-item-title{ height: 30px;display: flex;align-items: center;}
 .content-left .message-board .message-list .list-item-title span{ display: inline-block;margin-right: 10px;font-size: 1vw;font-weight: bold;}
 .content-left .message-board .message-list .list-item-content{ height: 100px;border: 1px solid #d6d6d6;background: #fff; overflow-y: auto;}
-.content-left .message-board .message-type{ float: left; width: 170px;}
+.content-left .message-board .message-type{ float: right; width: 170px;}
 .content-left .message-board .message-type .default-type{ display: flex;flex-direction: column;height: 150px;margin-bottom: 15px;justify-content: center;padding: 10px;}
 .content-left .message-board .message-type .default-type button{ margin: 5px;}
 .content-left .message-board .message-type .special-type{ flex: 1;display: flex;flex-direction: column;padding: 10px;}
