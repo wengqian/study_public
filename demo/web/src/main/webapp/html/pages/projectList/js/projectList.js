@@ -53,7 +53,7 @@ function getProjectList_success(data){
 function project_add(){
     var data ={
         opeartion_usercode:getSession("user_info")["usercode"],
-        project_name:'项目',
+        project_name:$("#projectName").val(),
         opeartion_type:'0'
     }
     sendPost(ProjectController.opeartion_project_data,data,project_add_success)

@@ -17,7 +17,7 @@
                 <div class="risk">
                     <div class="risk-top">
                         <span>风险点黑板</span>
-                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#riskModal" >风险点管控</button>
+                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#riskModal" onclick="clear_riskModalLabel();">风险点管控</button>
                     </div>
                     <div class="risk-content" id="risk-content">
                         <p>2017-07-07 14:23:34 具体内容手动阀士大夫发射点急啊说法垃圾dhl丰厚奖励啊加分很多垃圾哈时间发货记得哈记得发货发就发很拉风好卡都是啊接电话发件符合逻辑啊分手啦是否还,已发送给xxx,xxx,xxx,xxx</p>
@@ -108,25 +108,25 @@
     <div class="modal fade" id="riskModal" tabindex="-1" role="dialog" aria-labelledby="riskModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="riskModalLabel">告知风险点</h4>
+                    <h4 class="modal-title" id="riskModalLabel" >告知风险点</h4>
                 </div>
                 <div class="modal-body">
                     <div class="send-content">
                         <textarea rows="6" id="risk_control_content" placeholder="请输入内容。。。"></textarea>
                     </div>
                     <div class="send-person">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userListModal">添加人员</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"  id="add_userMember">添加人员</button>
                     </div>
-                    <div class="selected-user-list">
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
-                        <button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>
+                    <div class="selected-user-list" id="risk_control_sure_users">
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
+                        <!--<button class="btn btn-info btn-sm" type="button">梦某某 <span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -146,12 +146,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="send-content">
-                        <textarea rows="8" placeholder="请输入留言内容。。。"></textarea>
+                        <textarea rows="8" placeholder="请输入留言内容。。。" id="project_board_add_send_content"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="project_board_add()">确认</button>
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@
                                 <td>用户名</td>
                             </tr>
                         </thead>
-                        <tbody id="userList">
+                            <tbody id="userList">
                             <tr><td>1</td><td>000000</td><td>翁某某</td>
                             <tr><td>2</td><td>000001</td><td>翁某某</td>
                             <tr><td>3</td><td>000002</td><td>翁某某</td>
@@ -207,7 +207,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sure_user();">确认</button>
                 </div>
             </div>
         </div>
@@ -226,12 +226,12 @@
                         <span class="content-data" id="type-content-data">风险点管控方案</span>
                     </div>
                     <div class="add-content">
-                        <textarea rows="8" placeholder="请输入留言内容。。。"></textarea>
+                        <textarea rows="8" placeholder="请输入留言内容。。。" id="multiple_message_board_add_send_content"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">确认</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="multiple_message_board_add()">确认</button>
                 </div>
             </div>
         </div>

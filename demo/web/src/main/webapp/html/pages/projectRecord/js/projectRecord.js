@@ -57,16 +57,32 @@ function init(){
     $("#userList").on('click','tr',function(){
         if($(this).hasClass('info')){
             $(this).removeClass('info');
+            delete share_set_Json[($(this)[0].cells[1].innerText)];
         }else{
             $(this).addClass('info');
+            // $("tbody tr:gt(2)");
+             share_set_Json[$(this)[0].cells[1].innerText] = $(this)[0].cells[2].innerText;
         }
+        // console.log(share_set_Json);
     })
 
     //添加项目成员
     $("#addProjectMember").unbind('click').click(function(){
+        share_set_Json={};
+        sure_user_type=1;
+        opeartion_sys_user_search_list();
         $("#userListModal").modal();
+    });
+    //风险点告知添加
+    $("#add_userMember").unbind('click').click(function(){
+        share_set_Json={};
+        sure_user_type=0;
+        opeartion_sys_user_search_list();
+        $("#userListModal").modal();
+
     })
 }
+var share_set_Json={};
 
 //获取特殊类型按钮
 function getSpecialTypeBtns(type){

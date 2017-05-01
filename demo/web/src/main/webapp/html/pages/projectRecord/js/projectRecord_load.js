@@ -3,12 +3,27 @@
  */
 
 //风险点管控
+function clear_riskModalLabel(){
+    $("#risk_control_sure_users").html("");
+    $("#risk_control_content").val("");
+}
+
 function risk_control_add(){
+    var list =$("#risk_control_sure_users").find('button');
+    if(list.length<0){
+        alert("请选择用户");
+        return ;
+    }
+    var receive_user_json="";
+    for(var i=0;i<list.length;i++){
+        receive_user_json+=list[i].innerText+","
+    }
+    receive_user_json =receive_user_json.substr(0,receive_user_json.length-1);
     var data ={
         project_id:getSessionStr("opeartion_project_id"),
         opeartion_usercode:getSession("user_info")["usercode"],
         send_content:$("#risk_control_content").val(),
-        receive_user_json:"1,wq",//被接受的人员信息
+        receive_user_json:receive_user_json,//被接受的人员信息
         opeartion_type:'0'
     };
 
@@ -32,7 +47,7 @@ function risk_control_search_list(){
 }
 
 function risk_control_search_list_success(data){
-    console.log(data);
+    // console.log(data);
     var list = data.list;
     var html="";
     for(var i=0;i<list.length;i++){
@@ -45,21 +60,47 @@ function createHtml_risk_control(obj){
     var html ='<p>'+str+'</p>';
     return html;
 }
+function risk_control_sure_users(){
+    // console.log(data);
+    var html="";
+    for (var key in share_set_Json){
+        html+=createHtml_risk_control_sure_user(share_set_Json[key]);
+    }
+    $("#risk_control_sure_users").html(html);
+}
+function createHtml_risk_control_sure_user(username){
+    var html ='<button class="btn btn-info btn-sm" type="button">'+username+'<span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>';
+    return html;
+}
 //风险点管控结束
 
 //项目人员
+var sure_user_type=0;//0代表风险点管控中的添加,1代表项目总的添加
+function sure_user(){
+    if(sure_user_type==0){
+        risk_control_sure_users();
+    }else if(sure_user_type==1){
+        addShare();
+    }
+
+}
 //设置共享人员
-function setShare(){
+function addShare(){
     var data ={
         project_id:getSessionStr("opeartion_project_id"),
         opeartion_type:'0'
     };
-    var usercode_arr='1,2,1';//共享人员的usercode
+    var usercode_arr='';//共享人员的usercode
+    for (var key in share_set_Json){
+        usercode_arr+=key+","
+    }
+    usercode_arr =usercode_arr.substr(0,usercode_arr.length-1);
     data["usercode_arr"]=usercode_arr;
-    sendPost(ProjectController.opeartion_project_vist_power,data,setShare_success);
+    // console.log(data);
+    sendPost(ProjectController.opeartion_project_vist_power,data,addShare_success);
 }
 
-function setShare_success(data){
+function addShare_success(data){
     getShareUserList();
 }
 /**
@@ -75,7 +116,7 @@ function getShareUserList(){
 function getShareUserList_success(data){
     //展示名称
     // obj={usercode,username}返回的数据
-    console.log(data)
+    // console.log(data);
     var list = data.list;
     var shar_user_str ="";
     for(var i=0;i<list.length;i++){
@@ -92,19 +133,21 @@ function getShareUserList_success(data){
 
 //新增
 
-function multiple_message_board_modify() {
+function multiple_message_board_add() {
     var data ={
         project_id:getSessionStr("opeartion_project_id"),
         opeartion_usercode:getSession("user_info")["usercode"],
-        type:'',
-        type1:'',
-        send_content:'留言板',
+        type:publci_type,
+        type1:$("#type-content-label").attr("key"),
+        send_content:$("#multiple_message_board_add_send_content").val(),
         opeartion_type:'0'
     };
-    sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_modify_success);
-}
-function multiple_message_board_modify_success(data){
     // console.log(data);
+    sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_add_success);
+}
+function multiple_message_board_add_success(data){
+    // console.log(data);
+    multiple_message_board_search_list();
 }
 
 //修改
@@ -117,10 +160,11 @@ function multiple_message_board_modify() {
         send_content:'留言板',
         opeartion_type:'1'
     };
-    sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_modify_success);
+    // sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_modify_success);
 }
 function multiple_message_board_modify_success(data){
     // console.log(data);
+    multiple_message_board_search_list();
 }
 
 //删除
@@ -194,14 +238,15 @@ function createHtml_multiple_message_board(obj){
 function project_board_add(){
     var data ={
         project_id:getSessionStr("opeartion_project_id"),
-        send_content:'评价',
+        send_content:$("#project_board_add_send_content").val(),
         opeartion_usercode:getSession("user_info")["usercode"],
         opeartion_type:'0'
     };
+    // console.log(data);
     sendPost(ProjectController.opeartion_project_ac_board,data,project_board_add_success);
 }
 function project_board_add_success(data){
-
+    project_board_search_list();
 }
 function project_board_modify(){
     var data ={
@@ -257,6 +302,31 @@ function createHtml_project_board(obj){
     return html;
 }
 //项目交流版
+
+//查询人员信息
+function opeartion_sys_user_search_list(){
+    var data ={
+        opeartion_type:'4'
+    };
+    //可选模糊字段
+    sendPost(ProjectController.opeartion_sys_user,data,opeartion_sys_user_search_list_success);
+}
+function opeartion_sys_user_search_list_success(data){
+    //展示名称
+    // obj={usercode,username}返回的数据
+    var list = data.list;
+    var html="";
+    for(var i=0;i<list.length;i++){
+        html+=createHtml_opeartion_sys_user(list[i],i);
+    }
+    $("#userList").html(html);
+}
+function createHtml_opeartion_sys_user(obj,index){
+    var str = '';
+    var html =  '<tr><td>'+(index+1)+'</td><td>'+obj["usercode"]+'</td><td>'+obj["username"]+'</td></tr>';
+    return html;
+}
+
 function longToDate_str(date_long) {
     if(date_long==null){
         return "";
