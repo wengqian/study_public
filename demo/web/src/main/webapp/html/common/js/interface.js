@@ -1,7 +1,7 @@
 /**
  * Created by huixie on 2017/4/29.
  */
-var visit_url="http://localhost:8080/demo"
+var visit_url="http://localhost:8080/"
 var ProjectController ={
     opeartion_project_data:visit_url+'/projectController/opeartion_project_data.do',
     opeartion_project_vist_power:visit_url+'/projectController/opeartion_project_vist_power.do',
