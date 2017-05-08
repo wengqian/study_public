@@ -7,6 +7,13 @@ var publci_type='0';
 var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
 //特殊类型数据项
+//{
+// a:核心目的
+// b:人物逻辑
+// c:会议纪要
+// d:自定义
+// }
+//
 var special_btn={
     0:{
         btn:["0","1","2","3"],
@@ -227,15 +234,24 @@ function getShareUserList_success(data){
 /*--------各类留言板start----------------*/
 //新增
 function multiple_message_board_add() {
+    if($("#type-content-label").attr("key")=='d'){
+        //自定义判断
+        if( $("#type-content-data").text()==null ||  $("#type-content-data").text()==undefined || $("#type-content-data").text() =="自定义"){
+            alert("请确认自定义类型");
+            return ;
+        }
+    }
     var data ={
         project_id:project_id,
         opeartion_usercode:getObjSession("user_info")["usercode"],
         type:publci_type,
         type1:$("#type-content-label").attr("key"),
+        type1_name:$("#type-content-data").text(),
         send_content:$("#multiple_message_board_add_send_content").val(),
         opeartion_type:'0'
     };
     sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_add_success);
+    $('#addTypeContentModal').modal('hide');
 }
 function multiple_message_board_add_success(data){
     multiple_message_board_search_list();
