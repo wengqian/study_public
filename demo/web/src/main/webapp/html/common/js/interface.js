@@ -1,7 +1,10 @@
 /**
  * Created by huixie on 2017/4/29.
  */
-var visit_url="http://localhost:8080/"
+var webneturl=window.location.href;
+// alert(url);
+var visit_url="http://localhost:8080/";
+visit_url = webneturl.substring(0,webneturl.lastIndexOf("／html"));
 var ProjectController ={
     opeartion_project_data:visit_url+'/projectController/opeartion_project_data.do',
     opeartion_project_vist_power:visit_url+'/projectController/opeartion_project_vist_power.do',
