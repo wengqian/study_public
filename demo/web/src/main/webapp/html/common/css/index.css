@@ -1,2 +1,3 @@
+body{ display: flex;flex-direction: column;}
 .navbar{width: 100%;border-radius: 0;margin-bottom: 0;}
-#mainIframe{ width: 100%; height: 100%; overflow: hidden; position: fixed;}
+#mainIframe{ width: 100%; height: 100%; overflow: hidden; flex:1;}

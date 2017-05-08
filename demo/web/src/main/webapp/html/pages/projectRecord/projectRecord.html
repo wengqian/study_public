@@ -11,17 +11,16 @@
 </head>
 <body>
     <div class="container">
-        <div class="content-header">XXX项目管控档案</div>
+        <div class="content-header"><span id="projectName">XXX</span>项目管控档案</div>
         <div class="content-main">
             <div class="content-left">
                 <div class="risk">
                     <div class="risk-top">
                         <span>风险点黑板</span>
-                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#riskModal" onclick="clear_riskModalLabel();">风险点管控</button>
+                        <button class="btn btn-default" type="button" data-toggle="modal" id="riskControl">风险点管控</button>
                     </div>
                     <div class="risk-content" id="risk-content">
                         <p>2017-07-07 14:23:34 具体内容手动阀士大夫发射点急啊说法垃圾dhl丰厚奖励啊加分很多垃圾哈时间发货记得哈记得发货发就发很拉风好卡都是啊接电话发件符合逻辑啊分手啦是否还,已发送给xxx,xxx,xxx,xxx</p>
-                        <p>2017-07-07 14:23:34 具体内容xxfasfafasdffafdafsdfasfsdfdasxxxxxx,已发送给xxx,xxx,xxx,xxx</p>
                     </div>
                 </div>
                 <div class="tab-item">
@@ -64,6 +63,7 @@
                             <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(0,'核心目的')">核心目的</button>
                             <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(1,'人物逻辑')">人物逻辑</button>
                             <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(2,'会议纪要')">会议纪要</button>
+                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(3,'自定义')">自定义</button>
                         </div>
                         <div class="special-type" id="special-type"></div>
                     </div>
@@ -76,16 +76,7 @@
                         <a href="#" id="addProjectMember"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                     </div>
                     <div class="box-content" id="share_user">
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
-                        <p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>
+                        <!--<p><span>梦某某</span><a href="javascript:void(0)">X</span></a></p>-->
                     </div>
                 </div>
                 <div class="project-communicate">
@@ -94,14 +85,10 @@
                         <a href="#" data-toggle="modal" data-target="#communicateModal">留言</a>
                     </div>
                     <div class="box-content" id="project_board">
-                        <div class="box-content-item">
-                            <p>童xx 2017-02-06 15:13:12</p>
-                            <p>如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>
-                        </div>
-                        <div class="box-content-item">
-                            <p>童xx 2017-02-06 15:13:12</p>
-                            <p>如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>
-                        </div>
+                        <!--<div class="box-content-item">-->
+                            <!--<p>童xx 2017-02-06 15:13:12</p>-->
+                            <!--<p>如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。如果假如生活欺骗了你，不要悲伤，不要心急。。。</p>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -134,7 +121,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="risk_control_add()">发送</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="risk_control_add_ok()">发送</button>
                 </div>
             </div>
         </div>
@@ -248,7 +235,6 @@
     <script src="../../common/js/ajax_visit.js"></script>
     <!-- 加载公共方法-->
     <script src="../../common/js/public_function.js"></script>
-    <script src="js/projectRecord_load.js"></script>
     <script src="js/projectRecord.js"></script>
 </body>
 </html>

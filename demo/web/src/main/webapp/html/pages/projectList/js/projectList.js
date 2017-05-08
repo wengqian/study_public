@@ -2,8 +2,6 @@
  * Created by huixie on 2017/4/29.
  */
 
-var projectList={};
-
 $(function(){
     init();
     getProjectList();
@@ -31,9 +29,7 @@ function getProjectList_success(data){
                 '   </div> ' +
                 '</div>')
     var list = data.list;
-    projectList={};
     for(var i=0;i<list.length;i++){
-        projectList[list[i].id]=list[i];
         var html=createProjectListHTML(list[i]);
         $list.append(html);
     };
@@ -98,7 +94,7 @@ function createProjectListHTML(obj){
     html+='        <p><span class="item-label">项目名称：</span><span class="item-data">'+obj["project_name"]+'</span></p>';
     html+='        <p><span class="item-label">创建时间：</span><span class="item-data">'+longToDate_str(obj["create_time"])+'</span></p>';
     html+='        <p><span class="item-label">更新时间：</span><span class="item-data">'+longToDate_str(obj["update_time"])+'</span></p>';
-    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(\''+obj.id+'\');" >进入</button></p>';
+    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(\''+project_id+'\');" >进入</button></p>';
     html+='    </div>';
     html+='</div>';
     return html;
@@ -126,7 +122,6 @@ function longToDate_str(date_long) {
 
 //点击进入
 function onEnterProjectRecordHandle(project_id){
-    setObjSession("cur_project",projectList[project_id]);//当前操作的项目obj
+    sessionStorage.setItem("cur_project_id",project_id);//当前操作的项目obj
     $("#mainIframe",parent.document).attr("src",'pages/projectRecord/projectRecord.html');
-    window.parent.postMessageToIframe('mainIframe',project_id);
 }
