@@ -60,10 +60,10 @@
                     </div>
                     <div class="message-type">
                         <div class="default-type">
-                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(0,'核心目的')">核心目的</button>
-                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(1,'人物逻辑')">人物逻辑</button>
-                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(2,'会议纪要')">会议纪要</button>
-                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle(3,'自定义')">自定义</button>
+                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle('a','核心目的')">核心目的</button>
+                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle('b','人物逻辑')">人物逻辑</button>
+                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle('c','会议纪要')">会议纪要</button>
+                            <button class="btn btn-default" type="button" onclick="onAddTypeContentHandle('d','自定义')">自定义</button>
                         </div>
                         <div class="special-type" id="special-type"></div>
                     </div>
@@ -175,25 +175,25 @@
                         </tr>
                         </tbody>
                     </table>
-                    <nav aria-label="Page navigation" class="page">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <!--<nav aria-label="Page navigation" class="page">-->
+                        <!--<ul class="pagination">-->
+                            <!--<li>-->
+                                <!--<a href="#" aria-label="Previous">-->
+                                    <!--<span aria-hidden="true">&laquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="#">1</a></li>-->
+                            <!--<li><a href="#">2</a></li>-->
+                            <!--<li><a href="#">3</a></li>-->
+                            <!--<li><a href="#">4</a></li>-->
+                            <!--<li><a href="#">5</a></li>-->
+                            <!--<li>-->
+                                <!--<a href="#" aria-label="Next">-->
+                                    <!--<span aria-hidden="true">&raquo;</span>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -221,7 +221,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="multiple_message_board_add()">确认</button>
+                    <button type="button" class="btn btn-primary"  onclick="multiple_message_board_add()">确认</button>
                 </div>
             </div>
         </div>
