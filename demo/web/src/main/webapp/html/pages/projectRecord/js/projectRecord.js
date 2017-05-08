@@ -2,6 +2,9 @@
  * Created by huixie on 2017/4/30.
  */
 
+//获取列
+var publci_type='0';
+var share_set_Json={};
 //特殊类型数据项
 var special_btn={
     0:{
@@ -31,14 +34,8 @@ $(function(){
     init();
     initData();
 })
-function initData() {
-    risk_control_search_list();
-    getShareUserList();
-    project_board_search_list();
-    multiple_message_board_search_list();
-}
-//获取列
-var publci_type='0';
+
+
 function init(){
     //获取销售商务的特殊类型按钮
     getSpecialTypeBtns('0');
@@ -82,7 +79,14 @@ function init(){
 
     })
 }
-var share_set_Json={};
+
+//初始化数据
+function initData() {
+    risk_control_search_list();
+    getShareUserList();
+    project_board_search_list();
+    multiple_message_board_search_list();
+}
 
 //获取特殊类型按钮
 function getSpecialTypeBtns(type){

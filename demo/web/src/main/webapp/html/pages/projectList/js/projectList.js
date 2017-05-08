@@ -2,15 +2,14 @@
  * Created by huixie on 2017/4/29.
  */
 
+var projectList={};
+
 $(function(){
-    // console.log(window.sessionStorage.getItem("user_info"));
     init();
     getProjectList();
 })
 
 function init(){
-    // getSession("user_info")["usecode"];
-    // console.log(getSession("user_info"));
     $("#projectList").on('click','#project_add',function(){
         $("#addProjectModal").modal();
     })
@@ -18,14 +17,13 @@ function init(){
 
 function getProjectList() {
     var data ={
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'4'
     }
     sendPost(ProjectController.opeartion_project_data,data,getProjectList_success)
 }
 //获取项目列表
 function getProjectList_success(data){
-    var long  = data.long;
     var $list=$("#projectList").empty();
     $list.append('<div class="item-box" id ="project_add">' +
                 '   <div class="item-box-border"> ' +
@@ -33,26 +31,20 @@ function getProjectList_success(data){
                 '   </div> ' +
                 '</div>')
     var list = data.list;
+    projectList={};
     for(var i=0;i<list.length;i++){
+        projectList[list[i].id]=list[i];
         var html=createProjectListHTML(list[i]);
         $list.append(html);
     };
-    //新增
-    // $("#project_add").unbind('click').click(function(){
-    //     project_add();
-    //     //test
-    //     // project_modify();
-    //     // setTimeout(function(){
-    //     //     project_delete();
-    //     // },3000)
-    // });
+
 }
 /***
  * 新增
  * */
 function project_add(){
     var data ={
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         project_name:$("#projectName").val(),
         opeartion_type:'0'
     }
@@ -74,7 +66,7 @@ function project_modify(){
         project_id:'031cf57c-26bc-496b-87ea-f837d31ac5e4',
         project_name:'项目_modify',
         is_delete:'0',
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'1'
     }
     sendPost(ProjectController.opeartion_project_data,data,project_modify_success)
@@ -89,7 +81,7 @@ function project_delete(){
     var data ={
         project_id:'031cf57c-26bc-496b-87ea-f837d31ac5e4',
         project_name:'项目',
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'2'
     }
     sendPost(ProjectController.opeartion_project_data,data,project_delete_success)
@@ -106,7 +98,7 @@ function createProjectListHTML(obj){
     html+='        <p><span class="item-label">项目名称：</span><span class="item-data">'+obj["project_name"]+'</span></p>';
     html+='        <p><span class="item-label">创建时间：</span><span class="item-data">'+longToDate_str(obj["create_time"])+'</span></p>';
     html+='        <p><span class="item-label">更新时间：</span><span class="item-data">'+longToDate_str(obj["update_time"])+'</span></p>';
-    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(\''+project_id+'\');" >进入</button></p>';
+    html+='        <p><button type="button"  class="btn btn-default" onclick="onEnterProjectRecordHandle(\''+obj.id+'\');" >进入</button></p>';
     html+='    </div>';
     html+='</div>';
     return html;
@@ -132,9 +124,9 @@ function longToDate_str(date_long) {
     // return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours();
 }
 
+//点击进入
 function onEnterProjectRecordHandle(project_id){
-    // project_id = project_id.substr(1,project_id.length-1);
-    // project_id = project_id.trim();
-    setSession("opeartion_project_id",project_id);//当前操作的项目id
-    $("#mainIframe",parent.document).attr("src",'pages/projectRecord/projectRecord.html')
+    setObjSession("cur_project",projectList[project_id]);//当前操作的项目obj
+    $("#mainIframe",parent.document).attr("src",'pages/projectRecord/projectRecord.html');
+    window.parent.postMessageToIframe('mainIframe',project_id);
 }

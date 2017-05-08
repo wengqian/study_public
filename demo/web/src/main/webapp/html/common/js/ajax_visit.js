@@ -2,13 +2,6 @@
  * Created by wengqian on 2017/4/29.
  */
 
-// $(document).ready(function(){
-//     var data={code:'1'};
-//     sendPost('http://localhost:8080/demo/projectController/test.do',data,test);
-// });
-// function test(obj){
-//     console.log(obj);
-// }
 
 //默认参数
 var ajax_json ={

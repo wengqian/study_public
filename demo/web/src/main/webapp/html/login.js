@@ -7,8 +7,7 @@ $(function(){
     init();
 })
 function init(){
-    setSession("user_info",null);
-    setSession("opeartion_project_id","");
+    setObjSession("user_info",null);
     $("#login").unbind('click').click(function(){
         login();
     });
@@ -43,7 +42,7 @@ function login_success(data){
         return ;
     }
     // console.log(data)
-    setSession("user_info",data["user_obj"]);
+    setObjSession("user_info",data["user_obj"]);
     // console.log(getSession("user_info"));
     window.location.href='index.html';
 }

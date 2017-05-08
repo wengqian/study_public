@@ -1,10 +1,11 @@
 body{ display: flex;flex: 1;}
 .container{  display: flex;flex: 1;flex-direction: column;padding: 0;}
 .index-main-content{display: flex;flex-wrap: wrap; padding: 4% 5%; overflow-y: auto;}
+.index-main-content .item-box:first-child{cursor: pointer;}
 .index-main-content .item-box{ width: 25%;display: flex; padding: 10px;}
 .index-main-content .item-box .item-box-border{padding: 20px 30px 10px;display: flex;flex: 1; justify-content: center;align-items: center;flex-direction: column;  border: 1px solid #d6d6d6;}
 .index-main-content .item-box p{flex: 1;display: flex;width: 100%;}
-.index-main-content .item-box p:last-child{justify-content: center;}
+.index-main-content .item-box p:last-child{justify-content: center; align-items: center;}
 .index-main-content .item-box p span{font-size: 14px;}
 .index-main-content .item-box p span.item-label{font-weight: bold;}
 .index-main-content .item-box p span.item-data{color:#777;}

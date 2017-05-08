@@ -20,8 +20,8 @@ function risk_control_add(){
     }
     receive_user_json =receive_user_json.substr(0,receive_user_json.length-1);
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         send_content:$("#risk_control_content").val(),
         receive_user_json:receive_user_json,//被接受的人员信息
         opeartion_type:'0'
@@ -35,7 +35,7 @@ function risk_control_add_success(data){
 }
 //查询列
 function risk_control_search_list(){
-    var paroject_id =getSessionStr("opeartion_project_id");
+    var paroject_id =getObjSessionStr("opeartion_project_id");
     var data ={
         project_id:paroject_id,
         opeartion_type:'4'
@@ -88,7 +88,7 @@ function sure_user(){
 //设置共享人员
 function addShare(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
+        project_id:getObjSessionStr("opeartion_project_id"),
         opeartion_type:'0'
     };
     var usercode_arr='';//共享人员的usercode
@@ -109,7 +109,7 @@ function addShare_success(data){
  * */
 function getShareUserList(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
+        project_id:getObjSessionStr("opeartion_project_id"),
         opeartion_type:'1'
     };
     sendPost(ProjectController.opeartion_project_vist_power,data,getShareUserList_success);
@@ -136,8 +136,8 @@ function getShareUserList_success(data){
 
 function multiple_message_board_add() {
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         type:publci_type,
         type1:$("#type-content-label").attr("key"),
         send_content:$("#multiple_message_board_add_send_content").val(),
@@ -156,8 +156,8 @@ function multiple_message_board_add_success(data){
 function multiple_message_board_modify() {
     var data ={
         id:'',
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         send_content:'留言板',
         opeartion_type:'1'
     };
@@ -172,8 +172,8 @@ function multiple_message_board_modify_success(data){
 function multiple_message_board_delete() {
     var data ={
         id:'',
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'2'
     };
     sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_delete_success);
@@ -195,8 +195,8 @@ function multiple_message_board_search_obj_success(data){
 
 function multiple_message_board_search_list() {
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         type:publci_type,
         opeartion_type:'4'
     };
@@ -238,9 +238,9 @@ function createHtml_multiple_message_board(obj){
  * */
 function project_board_add(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
+        project_id:getObjSessionStr("opeartion_project_id"),
         send_content:$("#project_board_add_send_content").val(),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'0'
     };
     // console.log(data);
@@ -251,9 +251,9 @@ function project_board_add_success(data){
 }
 function project_board_modify(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
+        project_id:getObjSessionStr("opeartion_project_id"),
         send_content:'评价',
-        opeartion_usercode:getSession("user_info")["usercode"],
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'1'
     };
     sendPost(ProjectController.opeartion_project_ac_board,data,project_board_modify_success);
@@ -264,8 +264,8 @@ function project_board_modify_success(data){
 //删除
 function project_board_delete(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
-        opeartion_usercode:getSession("user_info")["usercode"],
+        project_id:getObjSessionStr("opeartion_project_id"),
+        opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'2'
     };
     sendPost(ProjectController.opeartion_project_ac_board,data,project_board_delete_success);
@@ -276,7 +276,7 @@ function project_board_delete_success(data){
 //查询
 function project_board_search_list(){
     var data ={
-        project_id:getSessionStr("opeartion_project_id"),
+        project_id:getObjSessionStr("opeartion_project_id"),
         opeartion_type:'4'
     };
     //可选模糊字段

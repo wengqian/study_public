@@ -1,10 +1,7 @@
 /**
  * Created by huixie on 2017/4/29.
  */
-var webneturl=window.location.href;
-// alert(url);
-var visit_url="http://localhost:8080/";
-visit_url = webneturl.substring(0,webneturl.lastIndexOf("／html"));
+var visit_url=targetOrigin;
 var ProjectController ={
     opeartion_project_data:visit_url+'/projectController/opeartion_project_data.do',
     opeartion_project_vist_power:visit_url+'/projectController/opeartion_project_vist_power.do',
@@ -15,16 +12,3 @@ var ProjectController ={
 
 }
 
-function setSession(str,obj) {
-    window.sessionStorage.setItem(str,JSON.stringify(obj));
-
-}
-
-function getSession(str) {
-  return JSON.parse(window.sessionStorage.getItem(str));
-}
-
-function getSessionStr(str) {
-    var str = window.sessionStorage.getItem(str);
-    return str.substr(1,str.length-2);
-}
