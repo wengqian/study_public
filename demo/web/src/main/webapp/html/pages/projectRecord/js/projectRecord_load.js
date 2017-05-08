@@ -69,7 +69,8 @@ function risk_control_sure_users(){
     $("#risk_control_sure_users").html(html);
 }
 function createHtml_risk_control_sure_user(username){
-    var html ='<button class="btn btn-info btn-sm" type="button">'+username+'<span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>';
+    //var html ='<button class="btn btn-info btn-sm" type="button">'+username+'<span class="badge"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span></button>';
+    var html =' <p><span>'+username+'</span><a href="javascript:void(0)">X</span></a></p>';
     return html;
 }
 //风险点管控结束
