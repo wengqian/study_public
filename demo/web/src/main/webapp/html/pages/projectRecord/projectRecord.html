@@ -136,7 +136,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="send-content">
-                        <textarea rows="8" placeholder="请输入留言内容。。。" id="project_board_add_send_content"></textarea>
+                        <script id="project_board_add_send_content" name="content" type="text/plain">
+                        </script>
+                        <!--<textarea rows="8" placeholder="请输入留言内容。。。" id="project_board_add_send_content"></textarea>-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -164,36 +166,16 @@
                             </tr>
                         </thead>
                             <tbody id="userList">
-                            <tr><td>1</td><td>000000</td><td>翁某某</td>
-                            <tr><td>2</td><td>000001</td><td>翁某某</td>
-                            <tr><td>3</td><td>000002</td><td>翁某某</td>
-                            <tr><td>4</td><td>000003</td><td>翁某某</td>
-                            <tr><td>4</td><td>000003</td><td>翁某某</td>
-                            <tr><td>4</td><td>000003</td><td>翁某某</td>
-                            <tr><td>4</td><td>000003</td><td>翁某某</td>
-                            <tr><td>4</td><td>000003</td><td>翁某某</td>
-                        </tr>
+                            <tr><td>1</td><td>000000</td><td>翁某某</td></tr>
+                            <tr><td>2</td><td>000001</td><td>翁某某</td></tr>
+                            <tr><td>3</td><td>000002</td><td>翁某某</td></tr>
+                            <tr><td>4</td><td>000003</td><td>翁某某</td></tr>
+                            <tr><td>4</td><td>000003</td><td>翁某某</td></tr>
+                            <tr><td>4</td><td>000003</td><td>翁某某</td></tr>
+                            <tr><td>4</td><td>000003</td><td>翁某某</td></tr>
+                            <tr><td>4</td><td>000003</td><td>翁某某</td></tr>
                         </tbody>
                     </table>
-                    <!--<nav aria-label="Page navigation" class="page">-->
-                        <!--<ul class="pagination">-->
-                            <!--<li>-->
-                                <!--<a href="#" aria-label="Previous">-->
-                                    <!--<span aria-hidden="true">&laquo;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li><a href="#">1</a></li>-->
-                            <!--<li><a href="#">2</a></li>-->
-                            <!--<li><a href="#">3</a></li>-->
-                            <!--<li><a href="#">4</a></li>-->
-                            <!--<li><a href="#">5</a></li>-->
-                            <!--<li>-->
-                                <!--<a href="#" aria-label="Next">-->
-                                    <!--<span aria-hidden="true">&raquo;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</nav>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -235,6 +217,11 @@
     <script src="../../common/js/ajax_visit.js"></script>
     <!-- 加载公共方法-->
     <script src="../../common/js/public_function.js"></script>
+    <!-- uEditor -->
+    <script type="text/javascript" src="../../common/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="../../common/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../common/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- uEditor end -->
     <script src="js/projectRecord.js"></script>
 </body>
 </html>

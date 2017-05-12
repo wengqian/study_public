@@ -6,6 +6,7 @@
 var publci_type='0';
 var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
+var projectBoardSendContent=null;
 //特殊类型数据项
 //{
 // a:核心目的
@@ -44,6 +45,8 @@ $(function(){
 
 
 function init(){
+    //初始化编辑器
+    var projectBoardSendContent=UE.getEditor('project_board_add_send_content');
     //获取销售商务的特殊类型按钮
     getSpecialTypeBtns('0');
     //点击tab 子项
