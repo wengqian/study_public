@@ -7,6 +7,8 @@ var publci_type='0';
 var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
 var projectBoardSendContent=null;
+var messageBoardAddSendContent=null;
+var riskControlContent=null;
 //特殊类型数据项
 //{
 // a:核心目的
@@ -46,7 +48,10 @@ $(function(){
 
 function init(){
     //初始化编辑器
-    var projectBoardSendContent=UE.getEditor('project_board_add_send_content');
+    projectBoardSendContent=$('#project_board_add_send_content').Editor();
+    messageBoardAddSendContent=$('#multiple_message_board_add_send_content').Editor();
+    riskControlContent=$('#risk_control_content').Editor();
+
     //获取销售商务的特殊类型按钮
     getSpecialTypeBtns('0');
     //点击tab 子项
@@ -237,6 +242,7 @@ function getShareUserList_success(data){
 /*--------各类留言板start----------------*/
 //新增
 function multiple_message_board_add() {
+    console.log($("#multiple_message_board_add_send_content").Editor("getText"))
     if($("#type-content-label").attr("key")=='d'){
         //自定义判断
         if( $("#type-content-data").text()==null ||  $("#type-content-data").text()==undefined || $("#type-content-data").text() =="自定义"){
