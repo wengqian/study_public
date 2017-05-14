@@ -6,3 +6,6 @@
 }
 
 html,body{width: 100%;height: 100%;}
+
+/*modal 弹窗*/
+.normal-height-modal-body{height:300px;}
