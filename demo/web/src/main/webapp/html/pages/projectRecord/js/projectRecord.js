@@ -3,7 +3,7 @@
  */
 
 //获取列
-var publci_type='0';
+var publci_type='';
 var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
 var projectBoardSendContent=null;
@@ -18,6 +18,12 @@ var riskControlContent=null;
 // }
 //
 var special_btn={
+    gd:{
+        a:"核心目的",
+        b:"人物逻辑",
+        c:"会议纪要",
+        d:"自定义"
+    },
     0:{
         btn:["0","1","2","3"],
         type1:{"0":"风险点管控方案","1":"销售策略","2":"销售节点","3":"销售要点"},
@@ -334,7 +340,7 @@ function createHtml_multiple_message_board(obj){
     var html =  '<div class="message-list-item">'+
         '<div class="list-item-title">'+
         '<span>'+longToDate_str(obj["send_time"])+'</span>'+
-        '<span>'+special_btn[publci_type]["type1"][obj["type1"]]+'</span>'+
+        '<span>'+special_btn[obj["type"]][obj["type1"]]+'</span>'+
         '<span>'+obj["send_username"]+'</span>'+
         '</div>'+
         '<div class="list-item-content">'+obj["send_content"]+'</div>'+
@@ -456,4 +462,5 @@ function onAddTypeContentHandle(key,type){
     $("#type-content-label").attr("key",key);
     $("#type-content-data").text(type);
     $('#addTypeContentModal').modal()
+    publci_type='gd';
 }
