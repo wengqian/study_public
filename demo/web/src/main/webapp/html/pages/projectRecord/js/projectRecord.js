@@ -256,7 +256,7 @@ function multiple_message_board_add() {
         type:publci_type,
         type1:$("#type-content-label").attr("key"),
         type1_name:$("#type-content-data").text(),
-        send_content:$("#multiple_message_board_add_send_content").val(),
+        send_content:$("#multiple_message_board_add_send_content").Editor("getText"),
         opeartion_type:'0'
     };
     sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_add_success);
@@ -351,7 +351,7 @@ function createHtml_multiple_message_board(obj){
 function project_board_add(){
     var data ={
         project_id:project_id,
-        send_content:$("#project_board_add_send_content").val(),
+        send_content:$("#project_board_add_send_content").Editor("getText"),
         opeartion_usercode:getObjSession("user_info")["usercode"],
         opeartion_type:'0'
     };
