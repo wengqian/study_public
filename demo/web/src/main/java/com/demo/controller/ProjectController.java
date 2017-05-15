@@ -3,15 +3,18 @@ package com.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.dao.BaseDao;
 import com.demo.utils.Result;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.*;
 
 
 @RestController
@@ -334,7 +337,7 @@ public class ProjectController {
      *  查询列
      * */
     @RequestMapping(value = "/opeartion_project_multiple_message_board",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String opeartion_project_multiple_message_board(String params){
+    public String opeartion_project_multiple_message_board( String params){
 
         JSONObject param = dealPage(params);
         JSONObject obj = new JSONObject();
@@ -427,6 +430,35 @@ public class ProjectController {
         return new Result(0,"无该项操作",null).toString();
     }
 
+    @RequestMapping(value = "/multiple_message_board_exportWord",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public void multiple_message_board_exportWord(HttpServletRequest request, HttpServletResponse response, String params){
+        JSONObject param = dealPage(params);
+        String sql ="select a.send_content,send_usercode from project_multiple_message_board a " +
+                " where a.is_delete='0' and a.id='"+param.getString("id")+"'";
+        JSONObject obj = baseDao.selectOne(sql);
+        Map<String, String> dataMap = new HashMap<String, String>();
+        dataMap.put("content", obj.getString("send_content"));
+        try{
+            String filename = param.getString("filename");
+            if(filename==null || "".equals(filename)){
+                filename = obj.getString("send_usercode")+".doc";
+            }
+            Configuration configuration = new Configuration();
+            configuration.setDefaultEncoding("utf-8");
+            String url = request.getRealPath("/")+"html/template";
+            File file = new File(url);
+            configuration.setDirectoryForTemplateLoading(file);//指定ftl所在目录,根据自己的改
+            response.setContentType("application/msword");
+            response.setHeader("Content-Disposition", "attachment;filename=" + filename );
+            response.setCharacterEncoding("utf-8");//此句非常关键,不然word文档全是乱码
+            PrintWriter out = response.getWriter();
+            Template t =  configuration.getTemplate("multiple_message_board_moulde.ftl","utf-8");//以utf-8的编码读取ftl文件
+            t.process(dataMap, out);
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     /**
      * 操作用户
      * 新增        0
