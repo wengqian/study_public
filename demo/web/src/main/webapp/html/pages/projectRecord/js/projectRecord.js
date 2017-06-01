@@ -8,7 +8,6 @@ var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
 var projectBoardSendContent=null;
 var messageBoardAddSendContent=null;
-var riskControlContent=null;
 //特殊类型数据项
 //{
 // a:核心目的
@@ -56,7 +55,6 @@ function init(){
     //初始化编辑器
     projectBoardSendContent=$('#project_board_add_send_content').Editor();
     messageBoardAddSendContent=$('#multiple_message_board_add_send_content').Editor();
-    riskControlContent=$('#risk_control_content').Editor();
 
     //获取销售商务的特殊类型按钮
     getSpecialTypeBtns('0');
