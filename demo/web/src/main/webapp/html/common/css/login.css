@@ -1,6 +1,28 @@
-.container{  display: flex;  flex: 1;  height: 100%;  align-items: center;  }
-.form-signin{  width: 100%;  display: flex;  justify-content: center;  }
-.login-main-content{  width: 800px;  display: flex;  justify-content: center;  flex-direction: column;  }
-.row{margin-bottom: 10px;}
-.btn-box{display: flex;justify-content: center; padding-right: 30px;}
-.btn-box button{width: 120px;}
+body,html{height: 100%;overflow: hidden}
+
+body{
+    background: url("../../images/login.png") no-repeat center;
+    background-clip: border-box;
+    background-size: cover;
+}
+
+.container{width: 300px;margin: 100px auto}
+.container h3{
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+}
+.container input,button{
+    width: 280px;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+.container button{
+    cursor:pointer
+}
