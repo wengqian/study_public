@@ -3,11 +3,12 @@
  */
 
 //获取列
-var publci_type='';
+var publci_type='0';
 var share_set_Json={};
 var project_id=sessionStorage.getItem('cur_project_id');
 var projectBoardSendContent=null;
 var messageBoardAddSendContent=null;
+var riskControlContent=null;
 //特殊类型数据项
 //{
 // a:核心目的
@@ -25,22 +26,22 @@ var special_btn={
     },
     0:{
         btn:["0","1","2","3"],
-        type1:{"0":"风险点管控方案","1":"销售策略","2":"销售节点","3":"销售要点"},
+        type1:{"a":"核心目的","b":"人物逻辑","c":"会议纪要","c":"自定义","0":"风险点管控方案","1":"销售策略","2":"销售节点","3":"销售要点"},
         bg:"#327299"
     },
     1:{
         btn:["0","1","2","3","4","5","6"],
-        type1:{"0":"风险点管控方案","1":"框架方案","2":"业务功能思维导图","3":"业务需求列表","4":"原型方案","5":"招标文件","6":"投标文件"},
+        type1:{"a":"核心目的","b":"人物逻辑","c":"会议纪要","c":"自定义","0":"风险点管控方案","1":"框架方案","2":"业务功能思维导图","3":"业务需求列表","4":"原型方案","5":"招标文件","6":"投标文件"},
         bg:"#329978"
     },
     2:{
         btn:["0","1","2","3","4","5","6","7","8","9","10"],
-        type1:{"0":"风险点管控方案","1":"数据对接","2":"网络环境","3":"硬件环境","4":"业务推进方案","5":"功能列表","6":"分包说明","7":"实施进度","8":"风险点处理方案","9":"项目文档","10":"验收文档"},
+        type1:{"a":"核心目的","b":"人物逻辑","c":"会议纪要","c":"自定义","0":"风险点管控方案","1":"数据对接","2":"网络环境","3":"硬件环境","4":"业务推进方案","5":"功能列表","6":"分包说明","7":"实施进度","8":"风险点处理方案","9":"项目文档","10":"验收文档"},
         bg:"#998132"
     },
     3:{
         btn:["0","1","2","3","4","5","6"],
-        type1:{"0":"风险点管控方案","1":"人文成本","2":"差旅费用","3":"市场费用","4":"硬件费用","5":"外包费用","6":"其他费用"},
+        type1:{"a":"核心目的","b":"人物逻辑","c":"会议纪要","c":"自定义","0":"风险点管控方案","1":"人文成本","2":"差旅费用","3":"市场费用","4":"硬件费用","5":"外包费用","6":"其他费用"},
         bg:"#994b32"
     }
 }
@@ -55,6 +56,7 @@ function init(){
     //初始化编辑器
     projectBoardSendContent=$('#project_board_add_send_content').Editor();
     messageBoardAddSendContent=$('#multiple_message_board_add_send_content').Editor();
+    riskControlContent=$('#risk_control_content').Editor();
 
     //获取销售商务的特殊类型按钮
     getSpecialTypeBtns('0');
@@ -246,7 +248,7 @@ function getShareUserList_success(data){
 /*--------各类留言板start----------------*/
 //新增
 function multiple_message_board_add() {
-    console.log($("#multiple_message_board_add_send_content").Editor("getText"))
+    // console.log($("#multiple_message_board_add_send_content").Editor("getText"))
     if($("#type-content-label").attr("key")=='d'){
         //自定义判断
         if( $("#type-content-data").text()==null ||  $("#type-content-data").text()==undefined || $("#type-content-data").text() =="自定义"){
@@ -254,13 +256,15 @@ function multiple_message_board_add() {
             return ;
         }
     }
+    var send_content_str =""+$("#multiple_message_board_add_send_content").Editor("getText")+"";
+    // console.log(send_content_str);
     var data ={
         project_id:project_id,
         opeartion_usercode:getObjSession("user_info")["usercode"],
         type:publci_type,
         type1:$("#type-content-label").attr("key"),
         type1_name:$("#type-content-data").text(),
-        send_content:$("#multiple_message_board_add_send_content").Editor("getText"),
+        send_content:send_content_str,
         opeartion_type:'0'
     };
     sendPost(ProjectController.opeartion_project_multiple_message_board,data,multiple_message_board_add_success);
@@ -338,7 +342,7 @@ function createHtml_multiple_message_board(obj){
     var html =  '<div class="message-list-item">'+
         '<div class="list-item-title">'+
         '<span>'+longToDate_str(obj["send_time"])+'</span>'+
-        '<span>'+special_btn[obj["type"]][obj["type1"]]+'</span>'+
+        '<span>'+special_btn[obj["type"]]["type1"][obj["type1"]]+'</span>'+
         '<span>'+obj["send_username"]+'</span>'+
         '</div>'+
         '<div class="list-item-content">'+obj["send_content"]+'</div>'+
@@ -459,6 +463,9 @@ function onAddTypeContentHandle(key,type){
     $("#multiple_message_board_add_send_content").val("")
     $("#type-content-label").attr("key",key);
     $("#type-content-data").text(type);
-    $('#addTypeContentModal').modal()
-    publci_type='gd';
+    $('#addTypeContentModal').modal();
+    //需要初始化数据
+    //$("#multiple_message_board_add_send_content").Editor("getText").clear();
+    // publci_type='gd';
 }
+
